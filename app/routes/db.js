@@ -1,4 +1,5 @@
 const express = require('express')
+const upload = require('multer')({ dest: 'uploads/' })
 const router = express.Router()
 const queries = require('../queries')
 
@@ -74,6 +75,18 @@ router.get('/version', (req, res) => {
   queries.getVersionId(version)
     .then((result) => {
       res.json(result[0])
+    })
+    .catch(onError(req, res))
+})
+
+/**
+ * GET /crash
+ * @param {String}
+ */
+router.post('/crash', (req, res) => {
+  queries.recordGameCrash(req.body)
+    .then((result) => {
+      res.json(req.body)
     })
     .catch(onError(req, res))
 })
