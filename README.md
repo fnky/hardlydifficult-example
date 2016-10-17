@@ -20,6 +20,8 @@ $ npm install # or yarn
 $ npm start # or node server.js
 ```
 
+> You'll need to `export DATABASE_URL=<url>` to connect with your database.
+
 ## license
 
 [WTFPL](LICENSE)
