@@ -20,7 +20,7 @@ $ npm install # or yarn
 $ npm start # or node server.js
 ```
 
-> You'll need to `export DATABASE_URL=<url>` to connect with your database.
+> You'll need to add environment variable `DATABASE_URL` with your connection url (or `export DATABASE_URL=<url>`) to connect with your database.
 
 ## license
 
