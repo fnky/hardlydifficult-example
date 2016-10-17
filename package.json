@@ -1,0 +1,22 @@
+{
+  "name": "hardlydifficult-example",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Its not that difficult",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Christian Petersen <chrs@cbp.io> (http://cbp.io/)",
+  "license": "WTFPL",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg-promise": "^5.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.0",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^3.0.0",
+    "eslint-plugin-standard": "^2.0.1"
+  }
+}
