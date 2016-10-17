@@ -35,6 +35,39 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: crash; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE crash (
+    id integer NOT NULL,
+    "ipId" integer,
+    "versionId" integer,
+    "currentScene" text,
+    exception text,
+    "playerId" integer
+);
+
+
+--
+-- Name: crash_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE crash_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: crash_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE crash_id_seq OWNED BY crash.id;
+
+
+--
 -- Name: ip; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -93,6 +126,13 @@ ALTER SEQUENCE version_id_seq OWNED BY version.id;
 
 
 --
+-- Name: crash id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY crash ALTER COLUMN id SET DEFAULT nextval('crash_id_seq'::regclass);
+
+
+--
 -- Name: ip id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -104,6 +144,21 @@ ALTER TABLE ONLY ip ALTER COLUMN id SET DEFAULT nextval('ip_id_seq'::regclass);
 --
 
 ALTER TABLE ONLY version ALTER COLUMN id SET DEFAULT nextval('version_id_seq'::regclass);
+
+
+--
+-- Data for Name: crash; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY crash (id, "ipId", "versionId", "currentScene", exception, "playerId") FROM stdin;
+\.
+
+
+--
+-- Name: crash_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('crash_id_seq', 5, true);
 
 
 --
@@ -127,7 +182,7 @@ SELECT pg_catalog.setval('ip_id_seq', 17, true);
 --
 
 COPY version (id, version) FROM stdin;
-0	0.13
+1	0.13
 \.
 
 
@@ -136,6 +191,14 @@ COPY version (id, version) FROM stdin;
 --
 
 SELECT pg_catalog.setval('version_id_seq', 1, false);
+
+
+--
+-- Name: crash crash_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY crash
+    ADD CONSTRAINT crash_pkey PRIMARY KEY (id);
 
 
 --
@@ -160,6 +223,22 @@ ALTER TABLE ONLY ip
 
 ALTER TABLE ONLY version
     ADD CONSTRAINT version_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: crash crash_ipId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY crash
+    ADD CONSTRAINT "crash_ipId_fkey" FOREIGN KEY ("ipId") REFERENCES ip(id);
+
+
+--
+-- Name: crash crash_versionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY crash
+    ADD CONSTRAINT "crash_versionId_fkey" FOREIGN KEY ("versionId") REFERENCES version(id);
 
 
 --
